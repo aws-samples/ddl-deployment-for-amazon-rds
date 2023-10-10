@@ -1,4 +1,4 @@
-# RDS DDL Automation
+# DDL Deployment for Amazon RDS
 
 This infrastructure shows how you can automatically deploy [DDL](https://en.wikipedia.org/wiki/Data_definition_language) (Data Definition Language) in the form of [SQL](https://en.wikipedia.org/wiki/SQL) statements (written in a file).
 

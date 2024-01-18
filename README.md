@@ -40,7 +40,7 @@ And this way, anytime you want to change the DDL, simply edit the file in one lo
 
 ## Seeing it in action
 
-Want to see how this works in action and deploy it in your own account? Follow through with the steps elicited below
+Want to see how this works in action and deploy it in your own account? Follow through with the steps elicited below:
 
 ### Pre-requisites
 * Since this is a [TypeScript](https://www.typescriptlang.org/) CDK project, you should have [npm](https://www.npmjs.com/) installed (which is the package manager for TypeScript/JavaScript).

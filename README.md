@@ -51,7 +51,7 @@ Want to see how this works in action and deploy it in your own account? Follow t
     * You need to also configure and authenticate your AWS CLI to be able to interact with AWS programmatically. Detailed instructions of how you could do that are provided [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 
 #### Deploy base infrastructure 
-This is contained in the [base-infra-stack.ts](lib/base-infra-stack.ts) file in the [lib](./lib/) directory. It contains a [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) (Virtual Private Cloud) for the RDS databae, the initialization detection queue, the [initialization trigger lambda function](./lambda/rds-ddl-trigger/app.py), and the EventBridge Rule that triggers on the CreateDBCluster API call.
+This is contained in the [base-infra-stack.ts](lib/base-infra-stack.ts) file in the [lib](./lib/) directory. It contains a [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) (Virtual Private Cloud) for the RDS databae, the initialization detection queue, the [initialization trigger lambda function](./lambda/rds-ddl-trigger/app.py), and the EventBridge Rule that triggers on the CreateDBCluster API call. It also creates a [CloudTrail Trail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail.html) to capture events in the AWS environment.
 
 ```
 npx cdk deploy BaseInfraStack

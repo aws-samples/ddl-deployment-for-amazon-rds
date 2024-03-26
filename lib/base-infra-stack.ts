@@ -6,7 +6,7 @@ import path = require("path");
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as events from "aws-cdk-lib/aws-events";
 import * as targets from "aws-cdk-lib/aws-events-targets";
-
+import * as cloudtrail from "aws-cdk-lib/aws-cloudtrail"
 
 export class BaseInfraStack extends cdk.Stack {
   readonly vpc: ec2.Vpc;
@@ -31,6 +31,11 @@ export class BaseInfraStack extends cdk.Stack {
         ],
       });
       this.vpc = vpc;
+
+    // Trail for logging AWS API events
+    const trail = new cloudtrail.Trail(this, 'myCloudTrail', {
+      managementEvents: cloudtrail.ReadWriteType.ALL
+    });
     
     // Queue for triggering initialization (DDL deployment) of RDS 
     const rdsDdlDetectionQueue = new sqs.Queue(this, 'rdsDdlDetectionQueue', {
@@ -62,6 +67,7 @@ export class BaseInfraStack extends cdk.Stack {
             }
         },
     });
+    eventBridgeCreateDBRule.node.addDependency(trail);
     // Invoke the rdsDdlTriggerFn upon a matching event
     eventBridgeCreateDBRule.addTarget(new targets.LambdaFunction(rdsDdlTriggerFn));
 

@@ -26,7 +26,11 @@ export class RDSStack extends cdk.Stack {
     // create RDS bits (security group and serverless instance)
     const dbName = "postgres";
     const rdsSecGroupName = "rds-security-group";
-    const rdsEngine = rds.DatabaseClusterEngine.auroraPostgres({version: rds.AuroraPostgresEngineVersion.VER_11_16});
+    const rdsEngine = rds.DatabaseClusterEngine.auroraPostgres(      
+      {
+        version: rds.AuroraPostgresEngineVersion.VER_13_9
+      }
+    );
     const rdsSecurityGroup = new ec2.SecurityGroup(this, rdsSecGroupName, {
       securityGroupName: rdsSecGroupName,
       vpc: vpc,
